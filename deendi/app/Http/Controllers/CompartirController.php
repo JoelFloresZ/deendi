@@ -30,16 +30,16 @@ class CompartirController extends Controller
         $grupos = App\DGrupo::where('user_id', $id)->orderBy('id', 'desc')->get();
         return $grupos;
     }
-    
+
     public function enviarUsuario(Request $request)
     {
     	//return $request->all();
-  
+
     	$usuario_email = DB::table('users')->where('email', $request->correo)->value('email');
 
     	if ($usuario_email === $request->correo) {
-    		
-    		
+
+
     		$encuestaRecibido = App\DEncuestasCompartida::where('destinatario', $request->correo)->where('encuesta_id', $request->encuesta_id)->get();
 
     		if (count($encuestaRecibido) == 0) {
@@ -73,7 +73,7 @@ class CompartirController extends Controller
     }
 
     public function campartirEncuestaGrupo(Request $request) {
-       
+
         $grupos = App\DGruposDeContato::where('grupo_id', $request->grupo)->orderBy('id', 'desc')->get();
         $contactos_a_enviar_encuesta = [];
         $contactos_no_registrados = [];
@@ -96,14 +96,14 @@ class CompartirController extends Controller
                 }else {
                     array_push($contactos_no_registrados, $contacto[0]->email);
                 }
-                
+
             }
 
         if (count($contactos_no_registrados) > 0) {
             return back()
             ->with('warning', 'No se pudo compartir la encuesta ya que el grupo contiene usuarios que no estan registrados en la plataforma');
         }else {
-            for ($i=0; $i < count($contactos_a_enviar_encuesta) ; $i++) { 
+            for ($i=0; $i < count($contactos_a_enviar_encuesta) ; $i++) {
                 $compartir = new App\DEncuestasCompartida;
                 $compartir->destinatario =$contactos_a_enviar_encuesta[$i];
                 $compartir->asunto = $request->mensaje;
@@ -123,7 +123,7 @@ class CompartirController extends Controller
             }
 
             return back()->with('mensaje','Encuesta compartida exitosamente');//mensaje
-               
+
         }
     }
 
@@ -156,8 +156,8 @@ class CompartirController extends Controller
                 Mail::to($contacto[0]->email)->queue(new  EncuestasCorreoElectronico($data));
             }else {
                  return back()->with('error','No se pudo compartir la encuesta al grupo');//mensaje
-            } 
-               
+            }
+
         }
 
         return back()->with('mensaje','Encuesta compartida exitosamente');//mensaje
@@ -190,12 +190,12 @@ class CompartirController extends Controller
             return back()->with('mensaje','Encuesta compartida exitosamente');//mensaje
         }else {
              return back()->with('error','No se pudo compartir la encuesta al grupo');//mensaje
-        }  
+        }
     }
 
     public function enviarEncuesta(Request $request)
     {
-       
+
         switch ($request->tipo_de_envio) {
             case 'correo':
                 if ($request->usuario === "usuario") {
@@ -217,8 +217,8 @@ class CompartirController extends Controller
 
                     return $this->campartirEncuestaGrupo($request); // enviar encuesta a un grupo
                 }
-                break;    
-            
+                break;
+
             default:
                     return back()->with('error','Hubo un error al tratar de enviar la encuesta');//mensaje
                 break;

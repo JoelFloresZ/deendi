@@ -9,9 +9,9 @@ export default new Vuex.Store({
   state: {
      encuesta: [],
      lista_opciones: [],
-     url_desing: '/servicios/user140220202001/encuesta/desarrollo',
-     url_aplicar_encuesta : '/servicios/user140220202001/encuesta/responder',
-     url_encuesta_recibido : '/servicios/user140220202001/encuesta/recibido',      
+     url_desing: '/user140220202001/encuesta/desarrollo', //servicios/user140220202001/encuesta/desarrollo
+     url_aplicar_encuesta : '/user140220202001/encuesta/responder', //servicios/
+     url_encuesta_recibido : '/user140220202001/encuesta/recibido', //servicios/
   },
 
   mutations: {
@@ -30,33 +30,33 @@ export default new Vuex.Store({
 
   },
 
-  actions: {    
-    
+  actions: {
+
     getDatosEncuesta( { commit }, id) {
         axios.get('encuesta/preguntas/'+ id)
         .then((result) => {
 
             commit('llenarPreguntas', result.data[0].preguntas);
-            console.log(result.data[0].preguntas);       
+            console.log(result.data[0].preguntas);
 
         }).catch((err) => {
             console.log(err);
         });
-        
+
     },
 
 
     getDatosOpcionesPregunta({ commit }, id_pregunta = 0){
         axios.get('get/pregunta/datos/' + id_pregunta).then((result) => {
             commit('llenarOpciones', result.data);
-            console.log(result.data);                  
-       
+            console.log(result.data);
+
         }).catch((err) => {
             console.log(err);
         });
     },
 
-   
+
 
   }
 
