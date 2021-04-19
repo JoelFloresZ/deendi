@@ -14,7 +14,7 @@ class CreateDEncuestasEnviadasEmailsTable extends Migration
     public function up()
     {
         Schema::create('d_encuestas_enviadas_emails', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('destinatario');
             $table->string('asunto');
             $table->unsignedBigInteger('encuesta_id');

@@ -14,7 +14,7 @@ class CreateDDatosPreguntaAbiertasTable extends Migration
     public function up()
     {
         Schema::create('d_datos_pregunta_abiertas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->char('tipo_respuesta');
             $table->char('tipo_form');
             $table->char('res_requerido');

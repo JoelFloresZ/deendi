@@ -14,7 +14,7 @@ class CreateDDatosPreguntaEscalasTable extends Migration
     public function up()
     {
         Schema::create('d_datos_pregunta_escalas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('tipo_res');
             $table->integer('rango');
             $table->integer('valor');

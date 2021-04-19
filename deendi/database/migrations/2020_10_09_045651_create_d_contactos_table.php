@@ -14,7 +14,7 @@ class CreateDContactosTable extends Migration
     public function up()
     {
         Schema::create('d_contactos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name',50);
             $table->string('ap_pat',50);
             $table->string('ap_mat',50);

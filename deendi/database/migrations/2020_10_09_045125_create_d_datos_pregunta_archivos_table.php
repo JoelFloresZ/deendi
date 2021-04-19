@@ -14,7 +14,7 @@ class CreateDDatosPreguntaArchivosTable extends Migration
     public function up()
     {
         Schema::create('d_datos_pregunta_archivos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->char('tipo_formato',10);
             $table->char('tipo_res',10);
             $table->unsignedBigInteger('pregunta_id');

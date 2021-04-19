@@ -14,7 +14,7 @@ class CreateDDatosPreguntaTablasTable extends Migration
     public function up()
     {
         Schema::create('d_datos_pregunta_tablas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->char('tipo_pregunta', 20);
             $table->integer('numero_columnas');
             $table->string('column1');

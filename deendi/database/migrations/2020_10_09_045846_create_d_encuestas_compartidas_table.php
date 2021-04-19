@@ -14,7 +14,7 @@ class CreateDEncuestasCompartidasTable extends Migration
     public function up()
     {
         Schema::create('d_encuestas_compartidas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('destinatario');
             $table->string('asunto');
             $table->unsignedBigInteger('encuesta_id');

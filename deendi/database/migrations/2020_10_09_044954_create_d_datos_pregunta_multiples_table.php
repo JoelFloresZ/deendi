@@ -14,7 +14,7 @@ class CreateDDatosPreguntaMultiplesTable extends Migration
     public function up()
     {
         Schema::create('d_datos_pregunta_multiples', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('opcion');
             $table->string('tipo_opcion');
             $table->char('opcion_otra',50);

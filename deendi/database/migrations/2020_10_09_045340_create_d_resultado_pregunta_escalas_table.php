@@ -14,7 +14,7 @@ class CreateDResultadoPreguntaEscalasTable extends Migration
     public function up()
     {
         Schema::create('d_resultado_pregunta_escalas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('encuesta_id');
             $table->foreign('encuesta_id')->references('id')->on('d_encuestas')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('pregunta_id');
