@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
      encuesta: [],
      lista_opciones: [],
-     url_desing: '/user140220202001/encuesta/desarrollo', //servicios/user140220202001/encuesta/desarrollo
+     url_desing: '/user140220202001/encuesta/desarrollo', ///user140220202001/encuesta/desarrollo
      url_aplicar_encuesta : '/user140220202001/encuesta/responder', //servicios/
      url_encuesta_recibido : '/user140220202001/encuesta/recibido', //servicios/
   },

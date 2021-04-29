@@ -165,13 +165,17 @@ class CompartirController extends Controller
 
     public function EnviarEncuestaCorreo(Request $request)
     {
+        // Revisar codigo siguiente $contacto y el array $data, escrito el (22/04/2021 : 01:32:am)
+        // Por que ak los correos no estan registrados en la base de datos si no que el correo se envia de forma independiente.}
+        // TODO
+        // Error que muestra : Offset(0) | en el servidor con el siguiente arraga un error, pero si no hay error al ejecutar este codigo que este asi
 
         $contacto = App\DContactos::where('email', $request->correo)->orderBy('id', 'desc')->get();
         $encuesta = App\DEncuestas::where('id', $request->encuesta_id)->first();
         $data = array(
-                'id' => $contacto[0]->id,
-                'name' => $contacto[0]->name,
-                'email' => $contacto[0]->email,
+                'id' => $contacto[0]->id, // Revisar  (22/04/2021 : 01:32:am)
+                'name' => $contacto[0]->name, // Revisar  (22/04/2021 : 01:32:am)
+                'email' => $contacto[0]->email, // Revisar  (22/04/2021 : 01:32:am)
                 'correo_remitente' => $id_user = auth()->user()->email,
                 'id_encuesta' => $request->encuesta_id,
                 'asunto' => $request->mensaje,
@@ -179,14 +183,14 @@ class CompartirController extends Controller
         );
 
         $compartir = new App\DEncuestasEnviadasEmail;
-        $compartir->destinatario = $contacto[0]->email;
+        $compartir->destinatario = $contacto[0]->email; // Revisar  (22/04/2021 : 01:32:am)
         $compartir->asunto = $request->mensaje;
         $compartir->encuesta_id = $request->encuesta_id;
         $compartir->id_remitente = auth()->user()->id;
         $compartir->estado = 1;
 
         if ($compartir->save()) {
-            Mail::to($contacto[0]->email)->queue(new  EncuestasCorreoElectronico($data));
+            Mail::to($contacto[0]->email)->queue(new  EncuestasCorreoElectronico($data)); // Revisar  (22/04/2021 : 01:32:am)
             return back()->with('mensaje','Encuesta compartida exitosamente');//mensaje
         }else {
              return back()->with('error','No se pudo compartir la encuesta al grupo');//mensaje
@@ -205,6 +209,8 @@ class CompartirController extends Controller
                 }if($request->usuario === "grupo"){
 
                     return $this->EnviarEncuestaCorreoGrupo($request); // enviar encuesta a un grupo
+                } else {
+                    return back()->with('error','Hubo un error al tratar de enviar la encuesta');//mensaje
                 }
                 break;
 

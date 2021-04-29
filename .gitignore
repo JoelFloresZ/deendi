@@ -3,7 +3,6 @@
 /deendi/public/storage
 /deendi/storage/*.key
 /deendi/vendor
-/deendi/.env
 /deendi/.env.backup
 /deendi/.phpunit.result.cache
 /deendi/Homestead.json

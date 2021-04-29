@@ -133,4 +133,25 @@ return [
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
+
+    /*
+    |--------------------------------------------------------------------------
+    |  SSL/TLS protection
+    |--------------------------------------------------------------------------
+    |
+    | En el proyecto hubo en error de seguridad
+    | para esto agregue el siguinete codigo de abago
+    | en esta linea, arregla el errror
+    | si la aplicacion muestrar error descomentar el siguinete codigo
+    | la aplicacion arrogo erro en el servidor sin este codigo
+    |
+    */
+    /* 'stream' => [
+        'ssl' => [
+           'allow_self_signed' => true,
+           'verify_peer' => false,
+           'verify_peer_name' => false,
+        ],
+     ], */
+
 ];

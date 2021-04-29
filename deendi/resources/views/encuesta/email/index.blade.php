@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/all.min.css')}}">
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico')}}" type="image/x-icon">
-    
+
 
     <title>Deendi | {{$encuesta[0]['titulo']}} | Aplicar</title>
 
@@ -35,7 +35,7 @@
 
       body {
         font-family: deendi;
-      } 
+      }
 
       .color_titulo {
       color: {{$estilos_encuesta[0]->color_titulo}};
@@ -46,17 +46,17 @@
       }
 
        .bg-fondo-img {
-      position: absolute;  
+      position: absolute;
       width: 100%;
       height: 200px;
       background-image: url("{{ $estilos_encuesta[0]->url_imagen }}");
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
-      background-clip: border-box;  
-      opacity: 1; 
+      background-clip: border-box;
+      opacity: 1;
       box-shadow: 0px 2px 0px  #f2f2f2;
-      filter: contrast(1px);  
+      filter: contrast(1px);
       }
 
       .bg {
@@ -85,7 +85,7 @@
         <div class="col-0 col-md-2"></div>
       </div>
     </div>
- 
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('js/app.js')}}"></script>

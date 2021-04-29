@@ -3,8 +3,8 @@
         <div class="mt-2">
             <h5 class="font-weight-bold">{{encuesta.titulo}}</h5>
             <p class="font-weight-normal">{{encuesta.descripcion}}</p>
-            
-            <hr class="bg-primary">     
+
+            <hr class="bg-primary">
             <div v-for="(pregunta,index) in preguntas" :key="index">
                 <label class="font-weight-bold">{{pregunta.pregunta}} <span class="h5 ml-1 text-primary">*</span></label>
 
@@ -28,7 +28,7 @@
                     <div v-for="opcion in pregunta.resultado">
                         <div class="custom-control custom-checkbox" v-bind:class="{'text-primary font-weight-bold': opcion.respondido }">
                             <input type="checkbox" class="custom-control-input" disabled="" v-if="opcion.respondido === 'disabled'">
-                            <input type="checkbox" class="custom-control-input" checked="" v-else> 
+                            <input type="checkbox" class="custom-control-input" checked="" v-else>
                             <label class="custom-control-label">{{ opcion.opcion }}</label>
                         </div>
                     </div>
@@ -71,7 +71,6 @@
                                 <th v-if="pregunta.resultado[0].column4 !== 'null'">{{pregunta.resultado[0].column4}}</th>
                                 <th v-if="pregunta.resultado[0].column5 !== 'null'">{{pregunta.resultado[0].column5}}</th>
                                 <th v-if="pregunta.resultado[0].column6 !== 'null'">{{pregunta.resultado[0].column6}}</th>
-                                <th v-if="pregunta.resultado[0].column6 !== 'null'">{{pregunta.resultado[0].column6}}</th>
                                 <th v-if="pregunta.resultado[0].column7 !== 'null'">{{pregunta.resultado[0].column7}}</th>
                                 <th v-if="pregunta.resultado[0].column8 !== 'null'">{{pregunta.resultado[0].column8}}</th>
                                 <th v-if="pregunta.resultado[0].column9 !== 'null'">{{pregunta.resultado[0].column9}}</th>
@@ -99,13 +98,13 @@
             </div>
             <!-- {{preguntas}} -->
         </div>
-        
+
         <nav aria-label="Page navigation example" class="mb-3">
           <ul class="pagination justify-content-center">
             <li v-bind:class="{ 'page-item':li, 'disabled':previos }">
               <a class="page-link" href="#" tabindex="-1" aria-disabled="true" @click="PreviousPage()">Atras</a>
             </li>
-            
+
             <li class="page-item" v-for="n in total_de_paginas_mostrar">
                 <a class="page-link" href="#" @click="mostrarPagina(encuesta.resultados, n)">{{n +1}}</a>
             </li>
@@ -115,7 +114,7 @@
             </li>
           </ul>
         </nav>
-       
+
     </div>
 </template>
 
@@ -140,14 +139,14 @@
         },
 
         created(){
-            this.getDatosEncuesta($('#id_encuesta').val());  
+            this.getDatosEncuesta($('#id_encuesta').val());
         },
 
         methods: {
-            
+
             getDatosEncuesta(id_pregunta = 0){
                 axios.get('get/pregunta/datos/' + id_pregunta).then((result) => {
-                    console.log(result.data); 
+                    console.log(result.data);
                     this.total_paginas = result.data[0].resultados.length;
                     this.encuesta = result.data[0];
 
@@ -156,7 +155,7 @@
                         if (x < result.data[0].resultados.length) {
                             this.total_de_paginas_mostrar.push(x);
                         }
-                        
+
                         x++;
                     }
 
@@ -166,21 +165,21 @@
 
                     }
 
-                    this.mostrarPagina(this.encuesta.resultados, 0);               
-               
+                    this.mostrarPagina(this.encuesta.resultados, 0);
+
                 }).catch((err) => {
                     console.log(err);
                 });
             },
 
             mostrarPagina(datos, pagina){
-               
+
                 this.preguntas = datos[pagina]
-                
+
             },
 
             nextPage(){
-                
+
                 if (this.total_paginas > this.pagina) {
                     var x = this.pagina_actual +1;
                     var quitar_pagina = this.total_de_paginas_mostrar.length - 2;
@@ -192,25 +191,25 @@
                     this.next = true;
                     this.previos = false;
                 }
-                
+
             },
 
             PreviousPage(){
-            
+
                 if (this.pagina > 8) {
                     var arrTotalPage = this.total_de_paginas_mostrar.length;
 
                     for (let index = 0; index < arrTotalPage; index++) {
                         //var posicionNubers = arrTotalPage - 1;
-                        this.total_de_paginas_mostrar.splice(index, 1, this.total_de_paginas_mostrar[index] - 1);                        
+                        this.total_de_paginas_mostrar.splice(index, 1, this.total_de_paginas_mostrar[index] - 1);
                     }
                      this.pagina --;
                 }else{
-                    this.previos = true; 
+                    this.previos = true;
                     this.next = false;
                 }
-                
-                                
+
+
             }
         }
     }

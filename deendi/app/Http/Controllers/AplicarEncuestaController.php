@@ -27,7 +27,7 @@ class AplicarEncuestaController extends Controller
     public function index($id)
     {
     	$encuesta = App\DEncuestas::where('id', decrypt($id))->get();
-        $estilos_encuesta = App\DEstiloEncuesta::where('encuesta_id', decrypt($id))->get(); 
+        $estilos_encuesta = App\DEstiloEncuesta::where('encuesta_id', decrypt($id))->get();
     	return view('encuesta.aplicar.index', compact('encuesta','estilos_encuesta'));
     }
 
@@ -51,35 +51,35 @@ class AplicarEncuestaController extends Controller
                             if( $pregunta->tipo_pregunta === 'pre_abierta'){
 
                                 $preguntaOpciones = App\DDatosPreguntaAbiertas::where('pregunta_id', $pregunta->id)->get();
-                                
+
                             }
 
                             if( $pregunta->tipo_pregunta === 'pre_opcion_simple' || 'pre_opcion_multiple' || 'pre_desplegable'){
 
                                 $preguntaOpciones = App\DDatosPreguntaMultiple::where('pregunta_id', $pregunta->id)->get();
-                                
+
                             }
 
                             if( $pregunta->tipo_pregunta === 'pre_escala'){
 
                                 $preguntaOpciones = App\DDatosPreguntaEscala::where('pregunta_id', $pregunta->id)->get();
-                                
+
                             }
 
                             if( $pregunta->tipo_pregunta === 'pre_archivo'){
 
                                 $preguntaOpciones = App\DDatosPreguntaArchivo::where('pregunta_id', $pregunta->id)->get();
-                                
+
                             }
 
                             if( $pregunta->tipo_pregunta === 'pre_tabla'){
 
                                 $preguntaOpciones = App\DDatosPreguntaTabla::where('pregunta_id', $pregunta->id)->get();
-                                
+
                             }
 
 
-                        
+
                         $datos_pregunta = array(
                             'id' => $pregunta->id,
                             'pregunta' => $pregunta->pregunta,
@@ -93,7 +93,7 @@ class AplicarEncuestaController extends Controller
 
                 /*
                 Guardamos los datos de la encuesta
-                 */    
+                 */
 
                 $datos_encuesta = array(
                     'id' => $encuesta->id,
@@ -108,8 +108,8 @@ class AplicarEncuestaController extends Controller
             return $datos;
 
           } catch (Exception $e) {
-              
-          }  
+
+          }
 
     }
 
@@ -160,8 +160,8 @@ class AplicarEncuestaController extends Controller
             }
 
             if ($respuestas[$i]['tipo_pregunta'] === 'pre_opcion_multiple') {
-                     
-                    for ($x=0; $x < count($respuestas[$i]['respuesta_id']) ; $x++) { 
+
+                    for ($x=0; $x < count($respuestas[$i]['respuesta_id']) ; $x++) {
                         $save_respuesta = new App\DResultadoPreguntaMultiple;
                         $save_respuesta->encuesta_id = $respuestas[$i]['id_encuesta'];
                         $save_respuesta->pregunta_id = $respuestas[$i]['id_pregunta'];
@@ -202,7 +202,7 @@ class AplicarEncuestaController extends Controller
 
             if ($respuestas[$i]['tipo_pregunta'] === 'pre_tabla') {
 
-                for ($x=0; $x < count($respuestas[$i]['respuestas']) ; $x++) { 
+                for ($x=0; $x < count($respuestas[$i]['respuestas']) ; $x++) {
                     $save_respuesta = new App\DResultadoPreguntaTabla;
                     $save_respuesta->encuesta_id = $respuestas[$i]['id_encuesta'];
                     $save_respuesta->pregunta_id = $respuestas[$i]['id_pregunta'];
@@ -219,7 +219,7 @@ class AplicarEncuestaController extends Controller
                     $save_respuesta->column9 = $respuestas[$i]['respuestas'][$x]['fila'][8]['res_tabla'] ?? 'null';
                     $save_respuesta->column10 = $respuestas[$i]['respuestas'][$x]['fila'][9]['res_tabla'] ?? 'null';
                     $save_respuesta->column11 = $respuestas[$i]['respuestas'][$x]['fila'][10]['res_tabla'] ?? 'null';
-                    $save_respuesta->column12 = $respuestas[$i]['respuestas'][$x]['fila'][11]['res_tabla'] ?? 'null';              
+                    $save_respuesta->column12 = $respuestas[$i]['respuestas'][$x]['fila'][11]['res_tabla'] ?? 'null';
                     $save_respuesta->num_columns = $respuestas[$i]['numero_columnas'];
                     $save_respuesta->estado = 1;
                     $save_respuesta->save();
@@ -246,14 +246,14 @@ class AplicarEncuestaController extends Controller
                                             ['pregunta_id', $respuestas[$i]['id_pregunta'] ],
                                             ['num_encuesta_aplicado', $contador_encuesta_aplicado + 1]
                                             ])->first();
-                                          
+
                     //return $id_respuesta->id;
                     $id_res_img = array(
                         'respuesta_img_id' => $id_respuesta_img->id,
                         'num_pregunta' => $i,
                         'num_encuesta_aplicado' => $contador_encuesta_aplicado + 1
                     );
-    
+
                     array_push($respuestas_img_id, $id_res_img);   //Genera un arreglo de ids de las respuestas de imagen
             }
 
@@ -263,7 +263,7 @@ class AplicarEncuestaController extends Controller
         }
 
         if (count($respuestas_img_id) > 0) {
-            
+
             return $respuestas_img_id;
 
         }else {
@@ -272,32 +272,32 @@ class AplicarEncuestaController extends Controller
     }
 
     public function guardarImages(Request $request){
-       
+
         $num_preguntas_images = $request->num_preguntas_img;
-       
-        for ($i=0; $i <  $num_preguntas_images; $i++) { 
+
+        for ($i=0; $i <  $num_preguntas_images; $i++) {
 
             if ($request->file('file'. $i)) {
                 $num_de_pregunta = $request->$i;//Obtenemos el numero de la pregunta en la encuesta
                 $num_id = 100 + $num_de_pregunta; //variable que genera un numero para obtener el id de la respuesta
                 $id_respuesta_img = $request->$num_id; //Obtenemos el id de la respuesta
                 //return $request->input("id".$num_de_pregunta);
-                
+
                //$path = $request->file('file'.$request->$i)->store('galeria');
                $path = Storage::disk('deendi')->put('galeria', $request->file('file'. $i));
                $name = $request->file('file'. $i)->getClientOriginalName(); //Obtenemos el nombre de la imagen
-               
+
                $guardarURLImage = App\DResultadoPreguntaArchivo::find($request['id_respuesta_img'. $i]);
                $guardarURLImage->imagen = asset($path);
                $guardarURLImage->nombre_img = $name;
                $guardarURLImage->img = $path;
                $guardarURLImage->save();
-               
+
             }else{
                 return "No hay archivos";
             }
         }
-        return "success"; 
-        
+        return "success";
+
     }
 }

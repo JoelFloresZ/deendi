@@ -1959,7 +1959,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2421,7 +2420,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -4287,7 +4285,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        // unnecessary 
+        // unnecessary
         type: "post",
         data: formData,
         dataType: false,
@@ -4367,7 +4365,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -4751,16 +4748,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       $('#model2Id').modal('show');
-      var respuestas = this.getDatosEnviar();
+      var respuestas = this.getDatosEnviar(); //console.log(respuestas);
+
       axios.post("".concat(this.url_encuesta_recibido, "/guardar/datos"), respuestas).then(function (result) {
+        //console.log(result.data);
         if (result.data === "success") {
-          $('.modal').modal('hide');
+          $('#model2Id').modal('hide');
           document.location.replace("".concat(_this2.url_encuesta_recibido, "/encuesta/finalizado"));
         } else {
           _this2.enviarDatosArchivo(result.data);
         }
       })["catch"](function (err) {
-        console.log(err);
+        //console.log(err);
         $('#model2Id').modal('hide');
       });
     },
@@ -4791,7 +4790,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        // unnecessary 
+        // unnecessary
         type: "post",
         data: formData,
         dataType: false,
@@ -4822,7 +4821,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-//
 //
 //
 //
@@ -7082,6 +7080,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['datos'],
@@ -7101,7 +7101,7 @@ __webpack_require__.r(__webpack_exports__);
 
       for (var i = 0; i < num; i++) {
         campos.push({
-          campo: "<input type=\"text\" class=\"form-control m-0\" value=\"\" id=\"tabla".concat(this.datos.id, "res").concat(this.num, "\" min=\"1\" maxlenght=\"188\" required>")
+          campo: "<input type=\"text\" class=\"form-control w-100 m-0 py-0 px-2\" value=\"\" id=\"tabla".concat(this.datos.id, "res").concat(this.num, "\" min=\"1\" maxlenght=\"188\" required>")
         });
         this.num++;
       }
@@ -43246,12 +43246,6 @@ var render = function() {
                                 ])
                               : _vm._e(),
                             _vm._v(" "),
-                            pregunta.resultado[0].column6 !== "null"
-                              ? _c("th", [
-                                  _vm._v(_vm._s(pregunta.resultado[0].column6))
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
                             pregunta.resultado[0].column7 !== "null"
                               ? _c("th", [
                                   _vm._v(_vm._s(pregunta.resultado[0].column7))
@@ -44184,12 +44178,6 @@ var render = function() {
                                 pregunta.datos[0].column5 !== "null"
                                   ? _c("th", [
                                       _vm._v(_vm._s(pregunta.datos[0].column5))
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                pregunta.datos[0].column6 !== "null"
-                                  ? _c("th", [
-                                      _vm._v(_vm._s(pregunta.datos[0].column6))
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
@@ -45860,7 +45848,7 @@ var render = function() {
       },
       [
         _vm._l(_vm.formularios, function(formulario, index) {
-          return _c("div", { key: index, staticClass: "pb-5 w-75" }, [
+          return _c("div", { key: index, staticClass: "pb-5" }, [
             formulario.tipo_pregunta === "pre_nota"
               ? _c("label", { staticClass: "font-weight-bold h4" }, [
                   _vm._v(_vm._s(formulario.pregunta))
@@ -45969,101 +45957,137 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             formulario.tipo_pregunta === "pre_tabla"
-              ? _c(
-                  "div",
-                  [
-                    _c("div", [
+              ? _c("div", [
+                  _c(
+                    "div",
+                    [
                       _c(
                         "table",
-                        { staticClass: "table table-bordered mb-0" },
+                        {
+                          staticClass: "table table-md w-full m-0 p-0 border-0"
+                        },
                         [
-                          _c(
-                            "thead",
-                            { staticClass: "bg-dark text-white text-center" },
-                            [
-                              _c(
-                                "tr",
-                                {
-                                  staticClass: "d-flex justify-content-around"
-                                },
-                                [
-                                  formulario.form.column1 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column1))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column2 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column2))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column3 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column3))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column4 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column4))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column5 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column5))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column6 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column6))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column6 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column6))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column7 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column7))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column8 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column8))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column9 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column9))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column10 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v("{formulario.form.column10}}")
-                                      ])
-                                    : _vm._e()
-                                ]
-                              )
-                            ]
-                          )
+                          _c("thead", { staticClass: "table-dark" }, [
+                            _c("tr", { staticClass: "d-flex" }, [
+                              formulario.form.column1 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column1))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column2 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column2))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column3 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column3))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column4 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column4))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column5 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column5))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column6 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column6))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column7 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column7))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column8 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column8))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column9 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column9))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column10 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column10))]
+                                  )
+                                : _vm._e()
+                            ])
+                          ])
                         ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("tablaDinamica", { attrs: { datos: formulario } })
-                  ],
-                  1
-                )
+                      ),
+                      _vm._v(" "),
+                      _c("tablaDinamica", { attrs: { datos: formulario } })
+                    ],
+                    1
+                  )
+                ])
               : _vm._e(),
             _vm._v(" "),
             formulario.tipo_pregunta === "pre_archivo"
@@ -46316,87 +46340,123 @@ var render = function() {
                     _c("div", [
                       _c(
                         "table",
-                        { staticClass: "table table-bordered mb-0" },
+                        {
+                          staticClass: "table table-md w-full m-0 p-0 border-0"
+                        },
                         [
-                          _c(
-                            "thead",
-                            { staticClass: "bg-dark text-white text-center" },
-                            [
-                              _c(
-                                "tr",
-                                {
-                                  staticClass: "d-flex justify-content-around"
-                                },
-                                [
-                                  formulario.form.column1 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column1))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column2 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column2))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column3 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column3))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column4 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column4))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column5 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column5))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column6 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column6))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column6 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column6))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column7 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column7))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column8 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column8))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column9 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column9))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column10 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v("{formulario.form.column10}}")
-                                      ])
-                                    : _vm._e()
-                                ]
-                              )
-                            ]
-                          )
+                          _c("thead", { staticClass: "table-dark" }, [
+                            _c("tr", { staticClass: "d-flex" }, [
+                              formulario.form.column1 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column1))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column2 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column2))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column3 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column3))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column4 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column4))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column5 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column5))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column6 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column6))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column7 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column7))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column8 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column8))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column9 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column9))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column10 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column10))]
+                                  )
+                                : _vm._e()
+                            ])
+                          ])
                         ]
                       )
                     ]),
@@ -46650,87 +46710,123 @@ var render = function() {
                     _c("div", [
                       _c(
                         "table",
-                        { staticClass: "table table-bordered mb-0" },
+                        {
+                          staticClass: "table table-md w-full m-0 p-0 border-0"
+                        },
                         [
-                          _c(
-                            "thead",
-                            { staticClass: "bg-dark text-white text-center" },
-                            [
-                              _c(
-                                "tr",
-                                {
-                                  staticClass: "d-flex justify-content-around"
-                                },
-                                [
-                                  formulario.form.column1 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column1))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column2 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column2))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column3 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column3))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column4 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column4))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column5 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column5))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column6 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column6))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column6 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column6))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column7 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column7))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column8 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column8))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column9 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v(_vm._s(formulario.form.column9))
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  formulario.form.column10 !== "null"
-                                    ? _c("th", { staticClass: "border-0" }, [
-                                        _vm._v("{formulario.form.column10}}")
-                                      ])
-                                    : _vm._e()
-                                ]
-                              )
-                            ]
-                          )
+                          _c("thead", { staticClass: "table-dark" }, [
+                            _c("tr", { staticClass: "d-flex" }, [
+                              formulario.form.column1 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column1))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column2 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column2))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column3 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column3))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column4 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column4))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column5 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column5))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column6 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column6))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column7 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column7))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column8 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column8))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column9 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column9))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              formulario.form.column10 !== "null"
+                                ? _c(
+                                    "th",
+                                    {
+                                      staticClass: "w-100",
+                                      attrs: { scope: "col" }
+                                    },
+                                    [_vm._v(_vm._s(formulario.form.column10))]
+                                  )
+                                : _vm._e()
+                            ])
+                          ])
                         ]
                       )
                     ]),
@@ -50139,12 +50235,14 @@ var render = function() {
       }
     }),
     _vm._v(" "),
-    _c("table", { staticClass: "table table-bordered mb-0 mt-0" }, [
+    _c("table", { staticClass: "table w-full m-0 p-0 border-0" }, [
       _c(
         "tbody",
+        { staticClass: "w-100" },
         _vm._l(_vm.filas, function(fila) {
           return _c(
             "tr",
+            {},
             _vm._l(fila.fila, function(campo) {
               return _c(
                 "td",
@@ -50154,7 +50252,9 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n\t\t\t\t\t\t" + _vm._s(campo.campo) + "\n\t\t\t\t\t"
+                    "\n                        " +
+                      _vm._s(campo.campo) +
+                      "\n                    "
                   )
                 ]
               )
@@ -65831,7 +65931,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     encuesta: [],
     lista_opciones: [],
     url_desing: '/user140220202001/encuesta/desarrollo',
-    //servicios/user140220202001/encuesta/desarrollo
+    ///user140220202001/encuesta/desarrollo
     url_aplicar_encuesta: '/user140220202001/encuesta/responder',
     //servicios/
     url_encuesta_recibido: '/user140220202001/encuesta/recibido' //servicios/

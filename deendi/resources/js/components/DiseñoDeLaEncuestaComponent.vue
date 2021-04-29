@@ -46,7 +46,7 @@
 
                     <div v-else-if="pregunta.tipo_pregunta === 'pre_desplegable'">
                         <div>
-                            <select class="custom-select"> 
+                            <select class="custom-select">
                                 <option v-for="(opcion, index) in pregunta.datos" :key="index" value="">{{opcion.opcion }}</option>
                             </select>
                         </div>
@@ -69,11 +69,11 @@
                             <label class="custom-file-label" for="customFileLangHTML" data-browse="Buscar">Seleccione el archivo</label>
                             <small class="text-muted" v-if="pregunta.datos[0].tipo_formato === '*'">Se aceptan imágenes de todos los formatos</small>
                             <small class="text-muted" v-else>Solo se aceptan imágenes con formato de tipo .{{pregunta.datos[0].tipo_formato}}</small>
-                        </div>   
+                        </div>
                     </div>
 
                     <div v-else-if="pregunta.tipo_pregunta === 'pre_tabla'">
-                
+
                         <table class="table table-bordered">
                             <thead class="bg-dark text-white text-center">
                                 <tr>
@@ -82,7 +82,6 @@
                                     <th v-if="pregunta.datos[0].column3 !== 'null'">{{pregunta.datos[0].column3}}</th>
                                     <th v-if="pregunta.datos[0].column4 !== 'null'">{{pregunta.datos[0].column4}}</th>
                                     <th v-if="pregunta.datos[0].column5 !== 'null'">{{pregunta.datos[0].column5}}</th>
-                                    <th v-if="pregunta.datos[0].column6 !== 'null'">{{pregunta.datos[0].column6}}</th>
                                     <th v-if="pregunta.datos[0].column6 !== 'null'">{{pregunta.datos[0].column6}}</th>
                                     <th v-if="pregunta.datos[0].column7 !== 'null'">{{pregunta.datos[0].column7}}</th>
                                     <th v-if="pregunta.datos[0].column8 !== 'null'">{{pregunta.datos[0].column8}}</th>
@@ -97,14 +96,14 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>  
+                        </table>
                     </div>
 
-                    <div v-else-if="pregunta.tipo_pregunta === 'pre_nota'">  
+                    <div v-else-if="pregunta.tipo_pregunta === 'pre_nota'">
                     </div>
 
                     <div v-else>
-                      
+
                     </div>
                 </div>
                 <hr class="bg-faded">
@@ -138,7 +137,7 @@
                 <EditTabla :datos="editarDatos" v-if="editarDatos.tipo_pregunta === 'pre_tabla'"></EditTabla>
 
               </div>
-              
+
             </div>
           </div>
         </div>
@@ -170,7 +169,7 @@
         },
 
         created(){
-            this.getDatosEncuesta($('#id_encuesta').val());  
+            this.getDatosEncuesta($('#id_encuesta').val());
         },
 
         methods: {
@@ -182,15 +181,15 @@
                 const DATOS = {
                     id_pregunta : id,
                 }
-                
+
                 var confirmar = confirm('Estas seguro de eliminara la pregunta');
                 if (confirmar) {
-                    axios.post(`${this.url_desing}/eliminar`, DATOS).then((result) => {            
-                        
+                    axios.post(`${this.url_desing}/eliminar`, DATOS).then((result) => {
+
                         if(result.data === 'success'){
-                            this.getDatosEncuesta($('#id_encuesta').val()); 
+                            this.getDatosEncuesta($('#id_encuesta').val());
                         }
-               
+
                     }).catch((err) => {
                         console.log(err);
                     });
@@ -203,8 +202,8 @@
                 axios.get(`${this.url_desing}/get/pregunta/`+ id)
                 .then((result) => {
 
-                    console.log(result.data);  
-                    this.editarDatos = result.data;   
+                    console.log(result.data);
+                    this.editarDatos = result.data;
 
                 }).catch((err) => {
                     console.log(err);

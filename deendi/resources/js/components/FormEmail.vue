@@ -55,14 +55,14 @@
         },
 
         created(){
-            this.getGrupos($('#encuesta_id').val());  
+            this.getGrupos($('#encuesta_id').val());
         },
         methods: {
             getGrupos(id) {
                 axios.get('obtener/grupos/'+ id)
                 .then((result) => {
-                    console.log(result.data);  
-                    this.grupos = result.data;   
+                    console.log(result.data);
+                    this.grupos = result.data;
 
                 }).catch((err) => {
                     console.log(err);

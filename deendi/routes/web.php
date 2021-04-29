@@ -149,9 +149,9 @@ Route::get('encuesta/recibido/get/datos/{id}','AplicarEncuestaEmailController@ge
 Route::post('encuesta/recibido/guardar/datos','AplicarEncuestaEmailController@guardar_datos_encuesta')->name('guardarDatos');
 Route::post('encuesta/recibido/guardar/archivos','AplicarEncuestaEmailController@guardar_datos_archivo')->name('guardarDatosArchivo');
 //Route::get('encuesta/recibido/finalizado','AplicarEncuestaEmailController@mensaje_encuesta_aplicado')->name('finalizado');
-Route::get('encuesta/recibido/undefined/encuesta/finalizado', function (){
+Route::get('encuesta/recibido/encuesta/finalizado', function (){
     return view('encuesta.email.mensaje');
-})->name('saludo');
+});
 
 /*
 /------------------------------------------------------------------------------------------

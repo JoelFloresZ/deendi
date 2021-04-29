@@ -16,6 +16,13 @@
 
                     {{ __('Before proceeding, please check your email for a verification link.') }}
                     {{ __('If you did not receive the email') }},
+                    {{-- }
+                        Se cambio el POST por el GET ya que marcaba un error el solicitar el link de restablecer
+                        contraseña modificado el (22/04/2021 : 01:32:am)
+                        Error que mostraba: The method post no es soport, soport method="GET, HEAD";
+                        Este errro ocurrio en el servidor.
+                        Si cuando ejecute se da el mismo error cambiar POST x GET.
+                        --}}
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.

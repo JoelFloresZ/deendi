@@ -59,7 +59,7 @@
         }
       }
     </style>
-
+   
   </head>
   <body class="text-center">
     <div id="contenedor-fondo">
@@ -78,7 +78,7 @@
                           @if (Route::has('register'))
                               <a class="nav-link" href="{{ route('register') }}">{{__('Register')}}</a>
                           @endif
-                      @endauth
+                      @endauth    
                   @endif
               </nav>
             </div>
@@ -88,10 +88,8 @@
           <img src="{{asset('img/logo.png')}}" class="img-fluid" width="150px">
           <h1 class="cover-heading display-4 font-weight-bold deendi">{{ config('app.name', 'Laravel') }}</h1>
           <h3>Desarrollo de encuestas dinámicas</h3>
-          <p class="">
-            DEENDI es una plataforma que permite el desarrollo de encuestas dinámicas, con la ayuda de esta herramienta podrá optimizar el tiempo de diseño, implementación y el análisis de sus datos que obtenga de su encuesta. La plataforma cuenta con 8 tipos de formularios para el diseño de su encuesta adaptándose de acuerdo a sus necesidades para el levantamiento de los datos, además cuenta con la opción de analizar los datos de forma general como un resumen de todos los datos obtenidos y más funciones para un mejor trabajo.
-          </p>
-
+          <p class="">La plataforma Deendi permite crear encuestas de forma dinámica, Optimiza los tiempos en desarrollar una encuesta, analiza los datos de una manera más rápida, ya que la misma plataforma trabaja con una herramienta de graficas que permite visualizar mejor los resultados obtenidos, además trabaja con encuestas por separado para ver los resultados de cada encuesta respondido, asimismo cuenta con su propia administración de encuestas e usuarios con quienes trabajar para aplicar una encuesta. </p>
+          
         </main>
 
         <footer class="mastfoot mt-auto">

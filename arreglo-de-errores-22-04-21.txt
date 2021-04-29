@@ -1,0 +1,35 @@
+Errores generados
+
+Error 1
+Error al solicitar link de restablecer contraseña
+Al registrar un usuario mostraba un error y no se recibia el correo de Confirmar contraseña.
+
+// El error fue Que decia que el metodo POST no se aceptaba si no que necesitaba el metodo GET O HEAD 
+Esto paso en ambos vistas como en el registro, y solicitar link de restablecer contraseña.
+
+Para areglar esto cambia el metodo POST del formuario por GET 
+en la vista de verify.blade.php
+esto areglo los errores tanto en el regitro como en el verify.blade.php
+
+
+Error 2
+Al enviar una encuesta por correo a un usario externo obtenia un error de la
+Offset 0 ya que tenia un error en un metodo 
+Donde trataba de consultar un contacto que no existia y por ende regresaba un arreglo vacio 
+y eso hacia que fallara la aplicación. 
+
+
+Error 3 
+Al componer el errro 2 apareci otro error donde decia que habia un error de inseguridad.
+Stremm SSL 
+Para esto agrege un codigo con los parametros que arreglan ese error en el archivo main.php 
+esta en > Config/mail.php 
+El codigo esta asta el final del archivo.
+
+Error 4 
+Ademas otro error que tube fue con la del .env 
+Ya que habian cambiado las credenciales del envio de correo con sendgrid.
+Para arreglar este error genere un nuevo token en la platforma sendgrid.
+y busco en internet como enviar correo con sendgrid y laravel
+y en la propia documentación muestra los parametros que se necesitan. 
+
